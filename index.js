@@ -14,45 +14,15 @@ const render = require("./src/page-template.js");
 
 const team = [];
 
-// inquirer
-//   .prompt([
-//     {
-//       type: 'input',
-//       name: 'name',
-//       message: 'What is your name?',
-//     },
-//     {
-//       type: 'checkbox',
-//       message: 'What languages do you know?',
-//       name: 'stack',
-//       choices: ['HTML', 'CSS', 'JavaScript', 'MySQL'],
-//     },
-//     {
-//       type: 'list',
-//       message: 'What is your preferred method of communication?',
-//       name: 'contact',
-//       choices: ['email', 'phone', 'telekinesis'],
-//     },
-//   ])
-//   .then((data) => {
-//     const filename = `${data.name.toLowerCase().split(' ').join('')}.json`;
-
-//     fs.writeFile(filename, JSON.stringify(data, null, '\t'), (err) =>
-//       err ? console.log(err) : console.log('Success!')
-//     );
-//   });
-
-// Employee ID
-// Email address
-// Office number
-
 // =================================================================
-// Taken from class
+// Taken from class and updated to create the logic
 // =================================================================
 
+// =================================================================
+// Manager Questions
+// =================================================================
 inquirer
   .prompt([
-    //manager questions
     {
       type: "input",
       name: "managersName",
@@ -75,24 +45,37 @@ inquirer
     },
   ])
   .then((response) => {
-    // populate manager info
+    // =================================================================
+    // Destructure the responce
+    // =================================================================
     const { managersName, managersId, managersEmail, managersOfficeNumber } =
       response;
+    // =================================================================
+    // Create a new manager object
+    // =================================================================
     const manager = new Manager(
       managersName,
       managersId,
       managersEmail,
       managersOfficeNumber
     );
+    // =================================================================
+    // Push the object into the team array
+    // =================================================================
     team.push(manager);
-    // ...Object.values(response)
+
+    // =================================================================
+    // Prompt for the next employee
+    // =================================================================
     promptForNextEmployee();
   });
 
+// =================================================================
+// Prompts for the next employee
+// =================================================================
 const promptForNextEmployee = () => {
   inquirer
     .prompt([
-      // choice of 3
       {
         type: "list",
         message: "Do you want to add another employee?",
@@ -101,28 +84,27 @@ const promptForNextEmployee = () => {
       },
     ])
     .then((response) => {
-      //   console.log(Object.values(response));
+      // =================================================================
+      // Conditional actions from response
+      // =================================================================
       if (response.nextEmployeeOptions === "Engineer") {
-        // if engineer
-        //    promptForEngineer
         promptForEngineer();
         console.log(`You have chosen ${response.nextEmployeeOptions}`);
       } else if (response.nextEmployeeOptions === "Intern") {
-        // else if intern
-        //    promptForIntern
         promptForIntern();
         console.log(`You have chosen ${response.nextEmployeeOptions}`);
       } else {
-        //    use the functionality from page-template to generate the team
         buildPage();
       }
     });
 };
 
+// =================================================================
+// Engineer Questions
+// =================================================================
 const promptForEngineer = () => {
   inquirer
     .prompt([
-      //engineer questions
       {
         type: "input",
         name: "engineerName",
@@ -145,11 +127,15 @@ const promptForEngineer = () => {
       },
     ])
     .then((response) => {
-      // add new engineer to employees array
-
+      // =================================================================
+      // Destructure the responce
+      // =================================================================
       const { engineerName, engineerId, engineerEmail, engineerGithub } =
         response;
 
+      // =================================================================
+      // Create a new engineer object
+      // =================================================================
       const engineer = new Engineer(
         engineerName,
         engineerId,
@@ -157,17 +143,24 @@ const promptForEngineer = () => {
         engineerGithub
       );
 
+      // =================================================================
+      // Push the object into the team array
+      // =================================================================
       team.push(engineer);
 
-      // promptForNextEmployee
+      // =================================================================
+      // Prompts for the next employee
+      // =================================================================
       promptForNextEmployee();
     });
 };
 
+// =================================================================
+// Intern Questions
+// =================================================================
 const promptForIntern = () => {
   inquirer
     .prompt([
-      //intern questions
       {
         type: "input",
         name: "internName",
@@ -190,10 +183,14 @@ const promptForIntern = () => {
       },
     ])
     .then((response) => {
-      // add new intern to employees array
-
+      // =================================================================
+      // Destructure the response
+      // =================================================================
       const { internName, internId, internEmail, internSchool } = response;
 
+      // =================================================================
+      // Creates a new intern object
+      // =================================================================
       const intern = new Intern(
         internName,
         internId,
@@ -201,28 +198,34 @@ const promptForIntern = () => {
         internSchool
       );
 
+      // =================================================================
+      // Push the object into the team array
+      // =================================================================
       team.push(intern);
-      // promptForNextEmployee
+
+      // =================================================================
+      // Prompts for the next employee
+      // =================================================================
       promptForNextEmployee();
     });
 };
 
 const buildPage = () => {
-  console.log("lets build the page");
-  // render(myArrayOfTeamMembers)
-  console.log(team);
+  console.log("lets build the web page");
 
-  //     fs.writeFile(filename, JSON.stringify(data, null, '\t'), (err) =>
-  //       err ? console.log(err) : console.log('Success!')
-
-  // fs.writeFile("index.html", JSON.stringify(render, null, '\t'), (err) => {
-  //   err ? console.log(err) : console.log("success");
-  // });
-
+  // =================================================================
+  // Writes the file in the output folder
+  // =================================================================
   fs.writeFile(outputPath, render(team), (err) => {
+    // =================================================================
+    // Throws an error if there is an error
+    // =================================================================
     if (err) {
       throw err;
     }
-    console.log("Success, team HTML is created!");
+    // =================================================================
+    // Prints to the console if successful
+    // =================================================================
+    console.log("Successfully created the team.html page!!!");
   });
 };
