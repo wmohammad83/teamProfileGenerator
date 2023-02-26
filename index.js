@@ -104,14 +104,16 @@ const promptForNextEmployee = () => {
       if (response.nextEmployeeOptions === "Engineer") {
         // if engineer
         //    promptForEngineer
+        promptForEngineer();
         console.log(`You have chosen ${response.nextEmployeeOptions}`);
       } else if (response.nextEmployeeOptions === "Intern") {
         // else if intern
         //    promptForIntern
+        promptForIntern();
         console.log(`You have chosen ${response.nextEmployeeOptions}`);
       } else {
         //    use the functionality from page-template to generate the team
-        console.log("lets build the page");
+        buildPage()
       }
     });
 };
@@ -119,29 +121,68 @@ const promptForNextEmployee = () => {
 const promptForEngineer = () => {
   inquirer
     .prompt([
+      //engineer questions
       {
-        //engineer questions
+        type: "input",
+        name: "engineerName",
+        message: "What is the engineer name?",
+      },
+      {
+        type: "input",
+        name: "engineerId",
+        message: "What is the engineer ID?",
+      },
+      {
+        type: "input",
+        name: "engineerEmail",
+        message: "What is the engineers email?",
+      },
+      {
+        type: "input",
+        name: "engineerGithub",
+        message: "What is the engineer GitHub username?",
       },
     ])
     .then((response) => {
       // add new engineer to employees array
       // promptForNextEmployee
+      promptForNextEmployee();
     });
 };
 
 const promptForIntern = () => {
   inquirer
     .prompt([
+      //intern questions
       {
-        //intern questions
+        type: "input",
+        name: "internName",
+        message: "What is the interns name?",
+      },
+      {
+        type: "input",
+        name: "internId",
+        message: "What is the interns ID?",
+      },
+      {
+        type: "input",
+        name: "internEmail",
+        message: "What is the interns email?",
+      },
+      {
+        type: "input",
+        name: "internSchool",
+        message: "What is the name of the school the intern attends?",
       },
     ])
     .then((response) => {
       // add new intern to employees array
       // promptForNextEmployee
+      promptForNextEmployee();
     });
 };
 
 const buildPage = () => {
+  console.log("lets build the page");
   // render(myArrayOfTeamMembers)
 };
