@@ -11,12 +11,19 @@ The aim of this project was to use `nodejs` and `inquirer` to dynamically create
 Please click on the below to go to the relavent section.
 
 - [Installation](#installation)
+
 - [Usage](#usage)
+
 - [License](#license)
-- [Contributing](#contributing-here-is-a-header)
+
+- [Contributing](#contributing)
+
 - [Tests](#tests)
 
 - [Deployment](#deployment)
+
+- [Resources](#resources)
+
 - [Questions](#questions)
 
 ## Installation
@@ -24,7 +31,6 @@ Please click on the below to go to the relavent section.
 To install necessary dependencies, run the following command:
 
     npm install
-
 
 ## Usage
 
@@ -49,6 +55,16 @@ To run a test, you will need to run the following command:
 ## Deployment
 
 One you have ran the applicaion, it will put the `team.html` file in the output folder found [here](https://github.com/wmohammad83/teamProfileGenerator/tree/main/output)
+
+## Resources
+
+The following resources were used to build this application.
+
+- Class notes from Trillogy Bootcamp
+- Google
+- npmjs
+- inquirer documentation
+- jest documentation
 
 ## Questions
 
