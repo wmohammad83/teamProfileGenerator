@@ -211,4 +211,18 @@ const buildPage = () => {
   console.log("lets build the page");
   // render(myArrayOfTeamMembers)
   console.log(team);
+
+  //     fs.writeFile(filename, JSON.stringify(data, null, '\t'), (err) =>
+  //       err ? console.log(err) : console.log('Success!')
+
+  // fs.writeFile("index.html", JSON.stringify(render, null, '\t'), (err) => {
+  //   err ? console.log(err) : console.log("success");
+  // });
+
+  fs.writeFile(outputPath, render(team), (err) => {
+    if (err) {
+      throw err;
+    }
+    console.log("Success, team HTML is created!");
+  });
 };
