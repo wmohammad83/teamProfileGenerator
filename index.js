@@ -12,6 +12,8 @@ const render = require("./src/page-template.js");
 
 // TODO: Write Code to gather information about the development team members, and render the HTML file.
 
+const team = [];
+
 // inquirer
 //   .prompt([
 //     {
@@ -82,9 +84,8 @@ inquirer
       managersEmail,
       managersOfficeNumber
     );
+    team.push(manager);
     // ...Object.values(response)
-    console.log(manager);
-
     promptForNextEmployee();
   });
 
@@ -113,7 +114,7 @@ const promptForNextEmployee = () => {
         console.log(`You have chosen ${response.nextEmployeeOptions}`);
       } else {
         //    use the functionality from page-template to generate the team
-        buildPage()
+        buildPage();
       }
     });
 };
@@ -145,6 +146,19 @@ const promptForEngineer = () => {
     ])
     .then((response) => {
       // add new engineer to employees array
+
+      const { engineerName, engineerId, engineerEmail, engineerGithub } =
+        response;
+
+      const engineer = new Engineer(
+        engineerName,
+        engineerId,
+        engineerEmail,
+        engineerGithub
+      );
+
+      team.push(engineer);
+
       // promptForNextEmployee
       promptForNextEmployee();
     });
@@ -177,6 +191,17 @@ const promptForIntern = () => {
     ])
     .then((response) => {
       // add new intern to employees array
+
+      const { internName, internId, internEmail, internSchool } = response;
+
+      const intern = new Intern(
+        internName,
+        internId,
+        internEmail,
+        internSchool
+      );
+
+      team.push(intern);
       // promptForNextEmployee
       promptForNextEmployee();
     });
@@ -185,4 +210,5 @@ const promptForIntern = () => {
 const buildPage = () => {
   console.log("lets build the page");
   // render(myArrayOfTeamMembers)
+  console.log(team);
 };
