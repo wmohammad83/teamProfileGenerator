@@ -52,15 +52,20 @@ To run a test, you will need to run the following command:
 
     node test
 
+![The output of the test should look similar to below.](./assets/images/tests.png)
+
 ## Deployment
 
 One you have ran the applicaion, it will put the `team.html` file in the output folder found [here](https://github.com/wmohammad83/teamProfileGenerator/tree/main/output)
+
+![The output of the HTML should look similar to below.](./assets/images/output.png)
 
 ## Resources
 
 The following resources were used to build this application.
 
 - Class notes from Trillogy Bootcamp
+- Starter code provided in class
 - Google
 - npmjs
 - inquirer documentation
